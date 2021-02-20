@@ -1,0 +1,11 @@
+export const GET_EVENT_DATA = 'GET_EVENT_DATA';
+export const GET_EVENT_ERROR = 'GET_EVENT_ERROR';
+export const IS_LOADING = 'IS_LOADING';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const ON_NAME_CHANGE = 'ON_NAME_CHANGE';
+export const ON_LOGIN = 'ON_LOGIN';
+export const SWITCH_GRID = 'SWITCH_GRID';
+export const TRACK_EVENT = 'TRACK_EVENT';
+export const SET_SORTED_EVENTS = 'SET_SORTED_EVENTS';
+export const UN_TRACK_EVENT = 'UN_TRACK_EVENT';
