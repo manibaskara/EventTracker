@@ -48,8 +48,7 @@ function App() {
 const styles = StyleSheet.create({
   loading: {
     ...StyleSheet.absoluteFillObject,
-    opacity: 0.6,
-    backgroundColor: 'black',
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
 });
 
