@@ -20,9 +20,8 @@ export const loginAction = (name) => {
           position: 'bottom',
         });
         dispatch({type: LOGIN_SUCCESS, payload: response.data.name});
-        navigate('DrawerNavigator', {
-          screen: 'AppNavigator',
-          params: {screen: 'HomeScreen'},
+        navigate('DashBoardNavigator', {
+          screen: 'HomeScreen',
         });
       }
     } catch (e) {

@@ -7,14 +7,9 @@ import DraggableFlatList from 'react-native-draggable-flatlist';
 import {setSortedEventsAction} from '../store/actions/eventAction';
 import {isEmpty} from 'lodash';
 import {Appbar} from 'react-native-paper';
-
+import {goBack} from '../navigation/NavigationService';
 import {removeEventAction} from '../store/actions/eventAction';
-const TrackingScreen = ({
-  events,
-  setSortedEvents,
-  unTrackEvent,
-  navigation,
-}) => {
+const TrackingScreen = ({events, setSortedEvents, unTrackEvent}) => {
   const renderItem = useCallback(
     ({item, drag, isActive}) => {
       return (
@@ -46,7 +41,7 @@ const TrackingScreen = ({
       <Appbar.Header>
         <Appbar.BackAction
           onPress={() => {
-            navigation.closeDrawer();
+            goBack();
           }}
         />
         <Appbar.Content title="Event Tracking" />

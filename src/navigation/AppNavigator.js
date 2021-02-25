@@ -19,6 +19,11 @@ const DashBoardNavigator = () => (
       component={Screens.EventDetailScreen}
       options={{headerShown: false}}
     />
+    <Stack.Screen
+      name="TrackingScreen"
+      component={Screens.TrackingScreen}
+      options={{headerShown: false}}
+    />
   </Stack.Navigator>
 );
 
@@ -49,8 +54,8 @@ const AppNavigator = ({isLoggedIn}) => {
         />
       )}
       <Stack.Screen
-        name="DrawerNavigator"
-        component={DrawerNavigator}
+        name="DashBoardNavigator"
+        component={DashBoardNavigator}
         options={{headerShown: false}}
       />
     </Stack.Navigator>
