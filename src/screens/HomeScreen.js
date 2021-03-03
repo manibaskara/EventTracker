@@ -9,11 +9,6 @@ import {
 } from '../store/actions/eventAction';
 import EventCard from '../components/EventCard';
 import {navigate} from '../navigation/NavigationService';
-import {
-  FlingGestureHandler,
-  Directions,
-  State,
-} from 'react-native-gesture-handler';
 
 const HomeScreen = (props) => {
   const dispatch = useDispatch();
@@ -24,48 +19,40 @@ const HomeScreen = (props) => {
     dispatch(getEventsAction());
   }, [dispatch]);
   return (
-    <FlingGestureHandler
-      direction={Directions.LEFT}
-      onHandlerStateChange={({nativeEvent}) => {
-        if (nativeEvent.state === State.ACTIVE) {
-          navigate('TrackingScreen');
-        }
-      }}>
-      <View style={styles.container}>
-        <Appbar.Header>
-          <Appbar.Content title="DashBoard" />
-        </Appbar.Header>
-        {data && data.events && (
-          <FlatList
-            style={styles.flatList}
-            key={numColumn === 1 ? 'vertical' : 'horizontal'}
-            data={data.events}
-            renderItem={({item}) => (
-              <EventCard
-                event={item}
-                isSingleCard={numColumn === 1}
-                onTrack={(event) => {
-                  dispatch(trackEventAction(event));
-                }}
-                onClickCard={(event) => {
-                  navigate('EventDetailScreen', {event});
-                }}
-              />
-            )}
-            keyExtractor={(item) => `id_${item.eventId}`}
-            numColumns={numColumn}
-          />
-        )}
-        <FAB
-          style={styles.fab}
-          label={numColumn === 1 ? 'Grid' : 'List'}
-          icon={numColumn === 1 ? 'border-all' : 'currency-eth'}
-          onPress={() => {
-            dispatch(switchGridAction());
-          }}
+    <View style={styles.container}>
+      <Appbar.Header>
+        <Appbar.Content title="DashBoard" />
+      </Appbar.Header>
+      {data && data.events && (
+        <FlatList
+          style={styles.flatList}
+          key={numColumn === 1 ? 'vertical' : 'horizontal'}
+          data={data.events}
+          renderItem={({item}) => (
+            <EventCard
+              event={item}
+              isSingleCard={numColumn === 1}
+              onTrack={(event) => {
+                dispatch(trackEventAction(event));
+              }}
+              onClickCard={(event) => {
+                navigate('EventDetailScreen', {event});
+              }}
+            />
+          )}
+          keyExtractor={(item) => `id_${item.eventId}`}
+          numColumns={numColumn}
         />
-      </View>
-    </FlingGestureHandler>
+      )}
+      <FAB
+        style={styles.fab}
+        label={numColumn === 1 ? 'Grid' : 'List'}
+        icon={numColumn === 1 ? 'border-all' : 'currency-eth'}
+        onPress={() => {
+          dispatch(switchGridAction());
+        }}
+      />
+    </View>
   );
 };
 

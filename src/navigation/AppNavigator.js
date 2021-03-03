@@ -1,30 +1,46 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 import Screens from '../screens';
 import {connect} from 'react-redux';
+import {navigate} from '../navigation/NavigationService';
+import {
+  FlingGestureHandler,
+  Directions,
+  State,
+} from 'react-native-gesture-handler';
 
 const DashBoardNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen
-      name="HomeScreen"
-      component={Screens.HomeScreen}
-      options={{headerShown: false}}
-    />
-    <Stack.Screen
-      name="EventDetailScreen"
-      component={Screens.EventDetailScreen}
-      options={{headerShown: false}}
-    />
-    <Stack.Screen
-      name="TrackingScreen"
-      component={Screens.TrackingScreen}
-      options={{headerShown: false}}
-    />
-  </Stack.Navigator>
+  <FlingGestureHandler
+    direction={Directions.LEFT}
+    onHandlerStateChange={({nativeEvent}) => {
+      if (nativeEvent.state === State.ACTIVE) {
+        navigate('TrackingScreen');
+      }
+    }}>
+    <View style={{flex: 1}}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="HomeScreen"
+          component={Screens.HomeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EventDetailScreen"
+          component={Screens.EventDetailScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="TrackingScreen"
+          component={Screens.TrackingScreen}
+          options={{headerShown: false}}
+        />
+      </Stack.Navigator>
+    </View>
+  </FlingGestureHandler>
 );
 
 const DrawerNavigator = () => {
