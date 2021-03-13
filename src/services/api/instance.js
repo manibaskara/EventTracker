@@ -14,3 +14,4 @@ export default instance;
 mock.onGet(LOGIN_USER).reply((config) => {
   return [200, {name: config.params.name}];
 });
+
